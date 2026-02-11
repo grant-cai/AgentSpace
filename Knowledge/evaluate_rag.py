@@ -2,6 +2,7 @@ import os
 import json
 import math
 import time
+import re
 from Aryan_Knowledge_RAG import hybrid_search, load_environment
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.vectorstores import Neo4jVector
@@ -51,7 +52,6 @@ def calculate_ndcg(retrieved_ids, expected_ids, k):
 
 def find_expected_ids(graph, source_name, hint):
     """Helper to find chunk_ids containing the ground truth hint."""
-    import re
     # Clean hint for regex: escape special chars, replace whitespace with \s+
     hint_regex = re.escape(re.sub(r'\s+', ' ', hint.strip()))
     hint_regex = hint_regex.replace(r'\ ', r'\s+')
@@ -104,8 +104,7 @@ def judge_rag_quality(judge, query, context, answer):
         response = judge.invoke(prompt.format(query=query, context=context, answer=answer))
         content = response.content.strip()
         # Robust JSON extraction using regex to handle potential LLM verbosity or markdown
-        import re
-        json_match = re.search(r'\{.*\}', content, re.DOTALL)
+        json_match = re.search(r'\{.*\}', content, re.S)
         if json_match:
             return json.loads(json_match.group())
         return {"faithfulness": 0, "answer_relevance": 0, "context_relevancy": 0}
