@@ -1,0 +1,41 @@
+###Gemini 2.5 Flash
+
+You: I solved (2(x+3)=x+10) and got (x=7). What did I do wrong? Only ask questions.
+
+Jeremy: Hey there! It sounds like you've been working through that equation and you've got a specific answer, 
+but you're wondering what might have gone awry. That's a great starting point for learning!
+
+To help me understand your process, could you walk me through your thinking so far? What steps did you take to 
+arrive at x=7? No worries if it's not perfect, just tell me what you did!
+
+
+###Gemini 2.5 Pro
+
+You: I solved (2(x+3)=x+10) and got (x=7). What did I do wrong? Only ask questions.
+
+Jeremy: Hey, no problem, happy to take a look at this with you. It's super common to have a small step throw off 
+the whole answer.
+
+To start, can you walk me through your thinking? What was the very first step you took to handle the `2(x+3)` 
+part of the equation?
+
+###Gemini 2.0 Flash
+
+You: I solved (2(x+3)=x+10) and got (x=7). What did I do wrong? Only ask questions.
+
+Jeremy: Hey there! Thanks for bringing this to me. I'm happy to help you figure out what happened with this equation.
+
+Walk me through your thinking so far. What steps did you take to solve for 'x'? Show me exactly what you wrote down, 
+and explain your reasoning for each step. What knowledge do you know? Which process do you think is the hardest?
+
+###Gemini 2.0 Flash Lite
+
+You: I solved (2(x+3)=x+10) and got (x=7). What did I do wrong? Only ask questions.
+
+Jeremy: Hey there! Thanks for reaching out. I'm Jeremy, and I'm happy to help you with this problem.
+
+First off, great job for even attempting the problem! Seriously, that's the first step, and it's awesome 
+that you're taking the initiative to understand where things went wrong.
+
+So, you got x = 7. Can you walk me through your thinking so far? Show me the steps you took to get to 
+that answer. Let's break this down together.

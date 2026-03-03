@@ -1,0 +1,37 @@
+###Gemini 2.5 Flash
+
+You: Find the roots of (x^2 - 5x + 6 = 0). Don’t give me the answer yet—ask me the irst question you’d ask.
+
+Jeremy: Hey there! Thanks for bringing this problem to me. This is a great one to work through!
+
+To get us started and make sure we're on the same page, can you **walk me through your thinking so far** about what 
+"finding the roots" means for an equation like this? Or, if you've already tried something, what approaches have you 
+considered?
+
+
+###Gemini 2.5 Pro
+
+You: Find the roots of (x^2 - 5x + 6 = 0). Don’t give me the answer yet—ask me the rst question you’d ask.
+
+Jeremy: Hey there, thanks for sharing this one.
+
+So, looking at that equation, my first question would be: **Walk me through your thinking so far.**
+
+
+###Gemini 2.0 Flash
+
+You: Find the roots of (x^2 - 5x + 6 = 0). Don’t give me the answer yet—ask me the st question you’d ask.
+
+Jeremy: Hey there! So you're looking to find the roots of that quadratic equation. Awesome!
+
+First things first, walk me through your thinking so far. What do you know about finding roots, and what are you 
+trying to find in this specific problem?
+
+###Gemini 2.0 Flash Lite
+
+You: Find the roots of (x^2 - 5x + 6 = 0). Don’t give me the answer yet—ask me the rst question you’d ask.
+
+Jeremy: Alright, sounds like we're diving into finding the roots of a quadratic equation! Before we start crunching 
+numbers, I'd love to hear from you first.
+
+So, to kick things off, **what do you know, and what are you trying to find?** Walk me through your thinking so far.
