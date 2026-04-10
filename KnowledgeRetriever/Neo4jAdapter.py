@@ -12,7 +12,7 @@ from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks.manager import CallbackManagerForRetrieverRun
 from typing import List, Optional
 
-from retriever import build_retriever, retrieve, Retriever
+from Retriever import build_retriever, retrieve, Retriever
 
 
 class Neo4jHybridRetriever(BaseRetriever):
