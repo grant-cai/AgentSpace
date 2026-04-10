@@ -110,7 +110,7 @@ class Orchestrator:
 
     def __init__(
         self,
-        personality_db_path: str = "Personality/faiss_db",
+        personality_db_path: str = "../PersonalityRetriever/faiss_db",
         personality_json_path: str = "Personality/personality_summary.json",
         neo4j_index_name: str = "essay_chunk_agentspace",
         personality_k: int = 4,   # matches grant_tutor_rag.py
