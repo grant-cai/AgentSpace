@@ -1,35 +1,5 @@
 """
-
-These two files should be in the same folder as grant_tutor_rag.py
-
-To get this working,
-In your code (grant_tutor_rag.py)
-
-REMOVE THIS:
-
-retriever = vectorstore.as_retriever(
-search_type="similarity",
-search_kwargs={"k": 4}
-)
-
----------------------------------------------------
-
-REPLACE WITH THIS:
-
-from neo4j_retriever_adapter import make_neo4j_retriever
-retriever = make_neo4j_retriever(
-neo4j_uri="YOUR_NEO4J_URI",
-neo4j_username="YOUR_USERNAME",
-neo4j_password="YOUR_PASSWORD",
-index_name="YOUR_INDEX_NAME",
-)
-
-This function's specifics can be found in the other file: Neo4jAdapter.py
-
-
-Install these dependencies: pip install langchain-community neo4j sentence-transformers
-
-
+Retriever function for knowledge
 
 """
 

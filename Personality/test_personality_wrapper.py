@@ -3,7 +3,7 @@ Tests for PersonalityWrapper
 """
 
 import os
-from personality_wrapper import PersonalityWrapper
+from PersonalityRetriever.personality_wrapper import PersonalityWrapper
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 
