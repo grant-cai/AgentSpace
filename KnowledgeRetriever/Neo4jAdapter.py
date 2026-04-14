@@ -12,7 +12,7 @@ from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks.manager import CallbackManagerForRetrieverRun
 from typing import List, Optional
 
-from Retriever import build_retriever, retrieve, Retriever
+from .Retriever import build_retriever, retrieve, Retriever
 
 
 class Neo4jHybridRetriever(BaseRetriever):
@@ -57,7 +57,7 @@ def make_neo4j_retriever(
     neo4j_uri: Optional[str] = None,
     neo4j_username: Optional[str] = None,
     neo4j_password: Optional[str] = None,
-    index_name: str = "essay_chunkAgentSpace2",
+    index_name: str = "essay_chunkAgentSpace",
     k: int = 4,
     **kwargs,
 ) -> Neo4jHybridRetriever:
