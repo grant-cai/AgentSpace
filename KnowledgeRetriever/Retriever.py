@@ -44,8 +44,8 @@ class RetrieverConfig:
     neo4j_uri: str
     neo4j_username: str
     neo4j_password: str
-    index_name: str = "essay_chunkAgentSpace2"
-    fulltext_index_name: str = "chunkTextIndex"
+    index_name: str = "essay_chunkAgentSpace"
+    fulltext_index_name: str = "essay_chunkAgentSpace"
     node_label: str = "Chunk"
     text_property: str = "text"
     embedding_property: str = "embedding"
