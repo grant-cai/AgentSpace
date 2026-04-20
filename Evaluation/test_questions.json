@@ -1,0 +1,230 @@
+[
+  {
+    "id": "Q1",
+    "query": "What is the primary purpose of a 'Personal Statement' as suggested by its title?",
+    "complexity": "local",
+    "target_entities": [
+      "Personal Statements"
+    ],
+    "reasoning_path": "Directly infer purpose from the document title 'Personal Statements'.",
+    "reference": "A 'Personal Statement' is a document typically used to describe an individual's personal qualities, experiences, and motivations, often for academic admissions or job applications."
+  },
+  {
+    "id": "Q2",
+    "query": "What are 'Abstracts and Summaries' generally used for in academic contexts?",
+    "complexity": "local",
+    "target_entities": [
+      "Abstracts and Summaries"
+    ],
+    "reasoning_path": "Directly infer the use from the document title 'Abstracts and Summaries'.",
+    "reference": "'Abstracts and Summaries' are concise overviews of longer works, providing readers with a quick understanding of the main points, arguments, or findings without needing to read the entire text."
+  },
+  {
+    "id": "Q3",
+    "query": "Which document focuses on evaluating a published work?",
+    "complexity": "local",
+    "target_entities": [
+      "Book Reviews"
+    ],
+    "reasoning_path": "Identify the document title that directly implies evaluation of a published work.",
+    "reference": "'Book Reviews' would focus on evaluating a published work, offering critical analysis and opinion on its content, style, and significance."
+  },
+  {
+    "id": "Q4",
+    "query": "What kind of essay requires examining similarities and differences between two or more subjects?",
+    "complexity": "local",
+    "target_entities": [
+      "Compare and Contrast Essays"
+    ],
+    "reasoning_path": "Directly identify the essay type from the document title 'Compare and Contrast Essays'.",
+    "reference": "'Compare and Contrast Essays' require the writer to examine the similarities and differences between two or more subjects."
+  },
+  {
+    "id": "Q5",
+    "query": "How might 'Assignment Analysis' be beneficial before writing a 'Research Report'?",
+    "complexity": "relationship",
+    "target_entities": [
+      "Assignment Analysis",
+      "Research Reports"
+    ],
+    "reasoning_path": "Connect 'Assignment Analysis' (understanding requirements) to 'Research Reports' (a specific type of report).",
+    "reference": "'Assignment Analysis' would be beneficial before writing a 'Research Report' by helping the writer thoroughly understand the requirements, scope, and expectations of the research assignment, leading to a more focused and successful report."
+  },
+  {
+    "id": "Q6",
+    "query": "What is the key distinction between 'Personal Narratives' and 'Personal Statements'?",
+    "complexity": "relationship",
+    "target_entities": [
+      "Personal Narratives",
+      "Personal Statements"
+    ],
+    "reasoning_path": "Differentiate the implied focus of 'Personal Narratives' (storytelling) from 'Personal Statements' (purpose/application).",
+    "reference": "While both are personal, 'Personal Narratives' typically focus on recounting a specific story or experience, often with a creative or reflective aim. 'Personal Statements,' on the other hand, are usually persuasive essays written for applications, focusing on one's qualifications, goals, and reasons for applying."
+  },
+  {
+    "id": "Q7",
+    "query": "If a student is preparing a 'Phil Paper', which other document would likely offer relevant procedural advice?",
+    "complexity": "relationship",
+    "target_entities": [
+      "Phil Paper Procedure & Tips",
+      "Assignment Analysis"
+    ],
+    "reasoning_path": "Connect 'Phil Paper Procedure & Tips' with general assignment understanding.",
+    "reference": "The 'Phil Paper Procedure & Tips' document would directly offer relevant procedural advice for a philosophy paper. Additionally, 'Assignment Analysis' could provide general strategies for understanding assignment expectations, which would be applicable to any paper, including a 'Phil Paper'."
+  },
+  {
+    "id": "Q8",
+    "query": "What types of reports are specifically mentioned in the provided document titles?",
+    "complexity": "local",
+    "target_entities": [
+      "Lab Reports",
+      "Research Reports"
+    ],
+    "reasoning_path": "Scan document titles for the word 'Reports'.",
+    "reference": "The document titles specifically mention 'Lab Reports' and 'Research Reports'."
+  },
+  {
+    "id": "Q9",
+    "query": "How might the advice from 'Abstracts and Summaries' be applied when writing a 'Book Review'?",
+    "complexity": "multi-hop",
+    "target_entities": [
+      "Abstracts and Summaries",
+      "Book Reviews"
+    ],
+    "reasoning_path": "Connect the purpose of abstracts/summaries (condensing information) to the need for a concise overview in a book review.",
+    "reference": "The advice from 'Abstracts and Summaries' could be applied to a 'Book Review' by helping the writer effectively condense the main arguments or plot of the book being reviewed into a brief, informative overview for the reader, often found in the introduction of a review."
+  },
+  {
+    "id": "Q10",
+    "query": "A student needs to analyze two different scientific experiments. Which document types would be most directly relevant to their task?",
+    "complexity": "multi-hop",
+    "target_entities": [
+      "Lab Reports",
+      "Compare and Contrast Essays",
+      "Assignment Analysis"
+    ],
+    "reasoning_path": "Combine 'Lab Reports' (scientific experiments) with 'Compare and Contrast Essays' (analyzing differences) and 'Assignment Analysis' (understanding the task).",
+    "reference": "For analyzing two different scientific experiments, 'Lab Reports' would be directly relevant for understanding the structure and content of such reports. Additionally, 'Compare and Contrast Essays' would be highly useful for structuring the analysis of similarities and differences between the two experiments. 'Assignment Analysis' would also be crucial for understanding the specific requirements of the analysis task."
+  },
+  {
+    "id": "Q11",
+    "query": "What are the common themes or purposes across all the 'essay' related documents?",
+    "complexity": "global",
+    "target_entities": [
+      "Compare and Contrast Essays",
+      "Personal Narratives",
+      "Personal Statements",
+      "Phil Paper Procedure & Tips"
+    ],
+    "reasoning_path": "Aggregate themes from all documents explicitly or implicitly related to 'essays'.",
+    "reference": "The 'essay' related documents ('Compare and Contrast Essays', 'Personal Narratives', 'Personal Statements', 'Phil Paper Procedure & Tips') generally aim to guide students in developing structured arguments, expressing personal experiences or motivations, and adhering to specific academic conventions for different essay types."
+  },
+  {
+    "id": "Q12",
+    "query": "Which document type would be least likely to involve subjective opinion or personal experience?",
+    "complexity": "comparative",
+    "target_entities": [
+      "Lab Reports",
+      "Personal Narratives",
+      "Personal Statements",
+      "Book Reviews"
+    ],
+    "reasoning_path": "Compare the nature of different document types to identify the most objective one.",
+    "reference": "'Lab Reports' would be least likely to involve subjective opinion or personal experience, as they typically focus on objective reporting of experimental procedures, results, and analysis."
+  },
+  {
+    "id": "Q13",
+    "query": "If a student is struggling to understand the requirements of a new writing assignment, which document should they consult first?",
+    "complexity": "local",
+    "target_entities": [
+      "Assignment Analysis"
+    ],
+    "reasoning_path": "Directly identify the document related to understanding assignment requirements.",
+    "reference": "They should consult 'Assignment Analysis' first, as it is designed to help understand the requirements of a writing assignment."
+  },
+  {
+    "id": "Q14",
+    "query": "What is the primary difference in focus between 'Research Reports' and 'Lab Reports'?",
+    "complexity": "relationship",
+    "target_entities": [
+      "Research Reports",
+      "Lab Reports"
+    ],
+    "reasoning_path": "Infer the typical distinctions between these two types of reports.",
+    "reference": "While both are scientific, 'Lab Reports' typically detail specific experiments conducted by the student, focusing on methodology, results, and discussion of a single lab activity. 'Research Reports' usually cover broader investigations, synthesizing existing literature, presenting original research findings (which might include multiple experiments or data sources), and offering more extensive analysis and conclusions."
+  },
+  {
+    "id": "Q15",
+    "query": "Could a 'Personal Narrative' be part of a 'Personal Statement'? Explain why or why not based on the titles.",
+    "complexity": "multi-hop",
+    "target_entities": [
+      "Personal Narratives",
+      "Personal Statements"
+    ],
+    "reasoning_path": "Analyze the potential overlap and distinct purposes implied by the titles.",
+    "reference": "Yes, a 'Personal Narrative' could be a component of a 'Personal Statement'. A 'Personal Statement' aims to convey one's qualifications and motivations for an application, and including a concise, relevant 'Personal Narrative' (a story or experience) can effectively illustrate key qualities or experiences that support the overall purpose of the statement."
+  },
+  {
+    "id": "Q16",
+    "query": "What general category of academic writing do 'Abstracts and Summaries' and 'Book Reviews' fall under?",
+    "complexity": "global",
+    "target_entities": [
+      "Abstracts and Summaries",
+      "Book Reviews"
+    ],
+    "reasoning_path": "Identify the common function of these document types.",
+    "reference": "Both 'Abstracts and Summaries' and 'Book Reviews' fall under the general category of analytical or interpretive writing, as they involve analyzing and presenting information about existing works."
+  },
+  {
+    "id": "Q17",
+    "query": "Which document provides specific guidance for a philosophical writing task?",
+    "complexity": "local",
+    "target_entities": [
+      "Phil Paper Procedure & Tips"
+    ],
+    "reasoning_path": "Directly identify the document title that specifies philosophical writing.",
+    "reference": "'Phil Paper Procedure & Tips' provides specific guidance for a philosophical writing task."
+  },
+  {
+    "id": "Q18",
+    "query": "Imagine a student is writing a 'Compare and Contrast Essay' about two different research studies. Which other documents would be most relevant for them?",
+    "complexity": "multi-hop",
+    "target_entities": [
+      "Compare and Contrast Essays",
+      "Research Reports",
+      "Abstracts and Summaries",
+      "Assignment Analysis"
+    ],
+    "reasoning_path": "Connect the essay type to the subject matter (research studies) and general writing guidance.",
+    "reference": "For a 'Compare and Contrast Essay' about two research studies, the student would find 'Research Reports' helpful to understand the structure and content of such studies. 'Abstracts and Summaries' would be useful for extracting the core arguments of each study efficiently. And, of course, 'Assignment Analysis' would help ensure they meet the specific requirements of the comparison essay."
+  },
+  {
+    "id": "Q19",
+    "query": "What is the common thread among 'Personal Narratives' and 'Personal Statements'?",
+    "complexity": "relationship",
+    "target_entities": [
+      "Personal Narratives",
+      "Personal Statements"
+    ],
+    "reasoning_path": "Identify the shared characteristic implied by 'Personal' in both titles.",
+    "reference": "The common thread among 'Personal Narratives' and 'Personal Statements' is their focus on the individual's experiences, perspectives, or self-reflection, as indicated by the word 'Personal' in both titles."
+  },
+  {
+    "id": "Q20",
+    "query": "Based on the titles, what is the overall scope of writing assistance offered by this collection of documents?",
+    "complexity": "global",
+    "target_entities": [
+      "Abstracts and Summaries",
+      "Assignment Analysis",
+      "Book Reviews",
+      "Compare and Contrast Essays",
+      "Lab Reports",
+      "Personal Narratives",
+      "Personal Statements",
+      "Phil Paper Procedure & Tips",
+      "Research Reports"
+    ],
+    "reasoning_path": "Synthesize the types of documents to understand the broad range of topics covered.",
+    "reference": "The overall scope of writing assistance offered by this collection of documents is broad, covering various academic and personal writing genres. It includes guidance on analytical writing (Abstracts, Summaries, Book Reviews, Assignment Analysis), scientific reporting (Lab Reports, Research Reports), persuasive writing (Personal Statements), reflective writing (Personal Narratives), and discipline-specific writing (Phil Paper Procedure & Tips)."
+  }
+]

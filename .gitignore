@@ -2,3 +2,4 @@ api_key.txt
 .env
 neo4j_api_key.txt
 similarities.py
+GEMINI.md
