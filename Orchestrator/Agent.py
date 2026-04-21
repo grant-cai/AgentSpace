@@ -9,6 +9,7 @@ from langgraph.checkpoint.memory import MemorySaver
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from PersonalityRetriever.personality_wrapper import PersonalityWrapper
 from KnowledgeRetriever.Neo4jAdapter import make_neo4j_retriever
+from langchain_google_genai import ChatGoogleGenerativeAI #import for the query rewritter
 
 # 1. Define your shared state
 class AgentState(MessagesState):
@@ -17,6 +18,7 @@ class AgentState(MessagesState):
     personality_retrieved: Optional[str] # filled by personality retrieval node
     personality_profile: Optional[str]  # filled on initial 
     final_response: Optional[str]      # filled by synthesizer node
+    rewritten_query: Optional[str]
 
 
 class personAgent: 
@@ -52,21 +54,28 @@ class personAgent:
             return {}
         profile = self.personality.get_profile()           # uses module-level wrapper
         return {"personality_profile": profile}
+    
+    #function to rewrite the input query
+    def rewriter_node(self, state: AgentState) -> dict:
+        query = state["messages"][-1].content
+        llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-lite", temperature=0)
+        prompt = f"""Rewrite the following query to improve search results.Fix any typos or grammatical errors. Keep the original meaning. Do not add extra information. Return only the rewritten query, nothing else. Query: {query}"""
+        response = llm.invoke(prompt)
+        result = response.content  # this is the string the LLM returns
 
     #function to do knowledge retrieval 
     def knowledge_retrieval_node(self, state: AgentState) -> dict:
-        query = state["messages"][-1].content
+        query = state["rewritten_query"]
         # Mocking your RAG call
         result = self.knowlege_retrieval.invoke(query)
         return {"knowledge_retrieved": result}
 
     #function to do personality retrieval
     def personality_retrieval_node(self, state: AgentState) -> dict:
-        query = state["messages"][-1].content
+        query = state["rewritten_query"]
         # Get specific tone or past interaction nuances
         nuance = self.personality.retrieve(query) 
         return {"personality_retrieved": nuance}
-
 
     def synthesizer_node(self, state: AgentState) -> dict:
             # Combine everything for the LLM
@@ -87,14 +96,17 @@ class personAgent:
         try:
             # Add Nodes
             self.agent.add_node("loader", self.load_personality_node)
+            self.agent.add_node("rewriter", self.rewriter_node)
             self.agent.add_node("knowledge_retriever", self.knowledge_retrieval_node)
             self.agent.add_node("personality_retriever", self.personality_retrieval_node)
             self.agent.add_node("synthesizer", self.synthesizer_node)
 
             # Define the "Train" (Edges)
             self.agent.add_edge(START, "loader")
-            self.agent.add_edge("loader", "knowledge_retriever")
-            self.agent.add_edge("knowledge_retriever", "personality_retriever")
+            self.agent.add_edge("loader", "rewriter")
+            self.agent.add_edge("rewriter", "knowledge_retriever")
+            self.agent.add_edge("rewriter", "personality_retriever")
+            self.agent.add_edge("knowledge_retriever", "synthesizer")
             self.agent.add_edge("personality_retriever", "synthesizer")
             self.agent.add_edge("synthesizer", END)
 
