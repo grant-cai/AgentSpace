@@ -58,21 +58,21 @@ class personAgent:
     #function to rewrite the input query
     def rewriter_node(self, state: AgentState) -> dict:
         query = state["messages"][-1].content
-        llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-lite", temperature=0)
+        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0)
         prompt = f"""Rewrite the following query to improve search results.Fix any typos or grammatical errors. Keep the original meaning. Do not add extra information. Return only the rewritten query, nothing else. Query: {query}"""
         response = llm.invoke(prompt)
         result = response.content  # this is the string the LLM returns
 
     #function to do knowledge retrieval 
     def knowledge_retrieval_node(self, state: AgentState) -> dict:
-        query = state["rewritten_query"]
+        query = state.get("rewritten_query", state["messages"][-1].content)
         # Mocking your RAG call
         result = self.knowlege_retrieval.invoke(query)
         return {"knowledge_retrieved": result}
 
     #function to do personality retrieval
     def personality_retrieval_node(self, state: AgentState) -> dict:
-        query = state["rewritten_query"]
+        query = state.get("rewritten_query", state["messages"][-1].content)
         # Get specific tone or past interaction nuances
         nuance = self.personality.retrieve(query) 
         return {"personality_retrieved": nuance}
