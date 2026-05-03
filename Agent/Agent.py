@@ -53,7 +53,7 @@ class personAgent:
         
         # LLM for synthesis
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash-lite",
+            model="gemini-3.1-flash-lite-preview",
             temperature=0.7,
             convert_system_message_to_human=True,
         )
