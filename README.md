@@ -15,7 +15,7 @@ conda create -n <environment_name> python=3.13
 conda activate <environment_name>
 ```
 
-4. Download dependencies by running the following command in the same directory as `environment.yml`:
+4. Download dependencies by running the following command in the same directory as `environment.yml`. If on apple use `environment.yml` on windows use `environment_windows.yml`:
 ```
 conda env update -f environment.yml
 ```
