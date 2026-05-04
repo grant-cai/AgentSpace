@@ -95,20 +95,21 @@ def build_retriever(
     return Retriever(config=config, graph=graph, vectorstore=vectorstore, embeddings=embeddings)
 
 
-def _get_chunk_context(graph, chunk_id: int, context_size: int = 1):
+def _get_chunk_context(graph: Neo4jGraph, chunk_id: int, context_size: int = 1):
     cypher = """
     MATCH (c:Chunk)
     WHERE c.chunk_id = $chunk_id
     OPTIONAL MATCH (before:Chunk)-[:NEXT*1..%d]->(c)
+    WITH c, before ORDER BY before.chunk_id ASC
+    WITH c, collect(before.text) AS before_texts
     OPTIONAL MATCH (c)-[:NEXT*1..%d]->(after:Chunk)
-    WITH c,
-         collect(DISTINCT before) AS before_chunks,
-         collect(DISTINCT after)  AS after_chunks
+    WITH c, before_texts, after ORDER BY after.chunk_id ASC
+    WITH c, before_texts, collect(after.text) AS after_texts
     RETURN
-        c.text                             AS current_text,
-        c.chunk_id                         AS current_id,
-        [b IN before_chunks | b.text]      AS before_texts,
-        [a IN after_chunks  | a.text]      AS after_texts
+        c.text     AS current_text,
+        c.chunk_id AS current_id,
+        before_texts,
+        after_texts
     """ % (context_size, context_size)
     result = graph.query(cypher, params={"chunk_id": chunk_id})
     return result[0] if result else None
@@ -157,10 +158,14 @@ def _reciprocal_rank_fusion(vector_results, bm25_results, k=60, vector_weight=2.
     scores = {}
     for rank, r in enumerate(vector_results):
         cid = r["chunk_id"]
+        if cid is None:
+            continue
         scores.setdefault(cid, {"score": 0.0, "data": r})
         scores[cid]["score"] += vector_weight / (k + rank + 1)
     for rank, r in enumerate(bm25_results):
         cid = r["chunk_id"]
+        if cid is None:
+            continue
         scores.setdefault(cid, {"score": 0.0, "data": r})
         scores[cid]["score"] += bm25_weight / (k + rank + 1)
     ranked = sorted(scores.values(), key=lambda x: x["score"], reverse=True)
@@ -178,10 +183,15 @@ def _reciprocal_rank_fusion(vector_results, bm25_results, k=60, vector_weight=2.
 
 def _build_context_string(result: dict) -> str:
     ctx = result.get("context") or {}
-    before  = " ".join(ctx.get("before_texts", []))
-    current = result["text"]
-    after   = " ".join(ctx.get("after_texts", []))
-    return f"{before} [CURRENT] {current} [END] {after}".strip()
+    parts = []
+    before = " ".join(ctx.get("before_texts", []))
+    if before:
+        parts.append(before)
+    parts.append(f"[CURRENT] {result['text']} [END]")
+    after = " ".join(ctx.get("after_texts", []))
+    if after:
+        parts.append(after)
+    return " ".join(parts)
 
 
 def retrieve(
