@@ -59,7 +59,7 @@ class personAgent:
     def rewriter_node(self, state: AgentState) -> dict:
         query = state["messages"][-1].content
         llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0)
-        prompt = f"""Rewrite the following query to improve search results.Fix any typos or grammatical errors. Keep the original meaning. Do not add extra information. Return only the rewritten query, nothing else. Query: {query}"""
+        prompt = f"""Fix any typos or grammatical errors in the following query. Do not change the meaning or rephrase. Return only the corrected query, nothing else. Query: {query}"""
         response = llm.invoke(prompt)
         result = response.content  # this is the string the LLM returns
 
