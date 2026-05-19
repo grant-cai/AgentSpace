@@ -44,6 +44,7 @@ class RetrieverConfig:
     neo4j_uri: str
     neo4j_username: str
     neo4j_password: str
+    neo4j_database: str = "neo4j"
     index_name: str = "essay_chunkAgentSpace"
     fulltext_index_name: str = "essay_chunkAgentSpace"
     node_label: str = "Chunk"
@@ -74,6 +75,7 @@ def build_retriever(
         neo4j_uri=neo4j_uri or os.environ["NEO4J_URI"],
         neo4j_username=neo4j_username or os.environ["NEO4J_USERNAME"],
         neo4j_password=neo4j_password or os.environ["NEO4J_PASSWORD"],
+        neo4j_database=os.environ.get("NEO4J_DATABASE", "neo4j"),
         **kwargs,
     )
     embeddings = MiniLMEmbeddings(config.embedding_model)
@@ -81,6 +83,7 @@ def build_retriever(
         url=config.neo4j_uri,
         username=config.neo4j_username,
         password=config.neo4j_password,
+        database=config.neo4j_database,
     )
     vectorstore = Neo4jVector(
         embedding=embeddings,
@@ -91,11 +94,12 @@ def build_retriever(
         node_label=config.node_label,
         text_node_property=config.text_property,
         embedding_node_property=config.embedding_property,
+        database=config.neo4j_database,
     )
     return Retriever(config=config, graph=graph, vectorstore=vectorstore, embeddings=embeddings)
 
 
-def _get_chunk_context(graph: Neo4jGraph, chunk_id: int, context_size: int = 1):
+def _get_chunk_context(graph: Neo4jGraph, chunk_id: str, context_size: int = 1):
     cypher = """
     MATCH (c:Chunk)
     WHERE c.chunk_id = $chunk_id
