@@ -48,10 +48,10 @@ dependencies:
   - brotli-python=1.2.0=py313hde1f3bb_1
   - bzip2=1.0.8=hd037594_9
   - c-ares=1.34.6=hc919400_0
-  - ca-certificates=2026.2.25=hbd8a1cb_0
+  - ca-certificates=2026.5.20=hbd8a1cb_0
   - cached-property=1.5.2=hd8ed1ab_1
   - cached_property=1.5.2=pyha770c72_1
-  - certifi=2026.2.25=pyhd8ed1ab_0
+  - certifi=2026.5.20=py313hca03da5_0
   - cffi=1.17.1=py313hc845a76_0
   - charset-normalizer=3.4.4=pyhd8ed1ab_0
   - click=8.3.1=pyh8f84b5b_1
@@ -69,13 +69,19 @@ dependencies:
   - dirtyjson=1.0.8=pyhcf101f3_2
   - diskcache=5.6.3=pyhd8ed1ab_1
   - distro=1.9.0=pyhd8ed1ab_1
+  - dnspython=2.8.0=pyhcf101f3_0
   - docstring_parser=0.17.0=pyhd8ed1ab_0
+  - email-validator=2.3.0=pyhd8ed1ab_0
+  - email_validator=2.3.0=hd8ed1ab_0
   - eval-type-backport=0.2.2=pyhd8ed1ab_0
   - eval_type_backport=0.2.2=pyha770c72_0
   - exceptiongroup=1.3.1=pyhd8ed1ab_0
   - executing=2.2.1=pyhd8ed1ab_0
   - faiss=1.10.0=cpu_openblas_py313_h7286747_0
   - faiss-cpu=1.10.0=hd610c6a_0
+  - fastapi-cli=0.0.23=pyhcf101f3_0
+  - fastapi-core=0.136.1=pyhcf101f3_0
+  - fastar=0.11.0=py313hb5b1e11_0
   - filelock=3.24.3=pyhd8ed1ab_0
   - filetype=1.2.0=pyhd8ed1ab_0
   - fmt=12.1.0=h403dcb5_0
@@ -98,6 +104,7 @@ dependencies:
   - hf-xet=1.2.1=py310h6ce4931_0
   - hpack=4.1.0=pyhd8ed1ab_0
   - httpcore=1.0.9=pyh29332c3_0
+  - httptools=0.7.1=py313h6535dbc_1
   - httpx=0.28.1=pyhd8ed1ab_0
   - httpx-sse=0.4.3=pyhd8ed1ab_0
   - huggingface_hub=0.36.0=pyhd8ed1ab_0
@@ -132,7 +139,6 @@ dependencies:
   - krb5=1.21.3=h237132a_0
   - langchain=1.2.10=pymin313_h332efcf_0
   - langchain-community=0.3.31=pymin312_hd8ed1ab_1
-  - langchain-core=1.2.14=pyhd8ed1ab_0
   - langchain-google-genai=4.2.1=pyhd8ed1ab_0
   - langchain-huggingface=1.2.0=pyhd8ed1ab_0
   - langchain-openai=1.1.10=pyhd8ed1ab_0
@@ -177,6 +183,7 @@ dependencies:
   - libiconv=1.18=h23cfdf5_2
   - libintl=0.25.1=h493aca8_0
   - libjpeg-turbo=3.1.2=hc919400_0
+  - libkrb5=1.21.3=h73ed823_4
   - liblapack=3.11.0=5_hd9741b5_openblas
   - liblzma=5.6.4=h39f12f2_0
   - liblzma-devel=5.6.4=h39f12f2_0
@@ -216,6 +223,7 @@ dependencies:
   - llama-parse=0.6.54=pyhd8ed1ab_0
   - llamaindex-py-client=0.1.19=pyhcf101f3_2
   - llvm-openmp=21.1.8=h4a912ad_0
+  - lmdb=0.9.31=h79febb2_0
   - lz4-c=1.10.0=h286801f_1
   - markdown-it-py=4.0.0=pyhd8ed1ab_0
   - markupsafe=3.0.3=py313h7d74516_0
@@ -263,6 +271,7 @@ dependencies:
   - prometheus-cpp=1.3.0=h0967b3e_0
   - prometheus_client=0.24.1=pyhd8ed1ab_0
   - prompt-toolkit=3.0.52=pyha770c72_0
+  - prompt_toolkit=3.0.52=hd3eb1b0_1
   - propcache=0.3.1=py313ha9b7d5b_0
   - psutil=7.2.2=py313h6688731_0
   - pthread-stubs=0.4=hd74edd7_1002
@@ -278,6 +287,7 @@ dependencies:
   - pycparser=2.22=pyh29332c3_1
   - pydantic=2.12.5=pyhcf101f3_1
   - pydantic-core=2.41.5=py313h2c089d5_1
+  - pydantic-extra-types=2.11.2=pyhcf101f3_0
   - pydantic-settings=2.13.1=pyhd8ed1ab_0
   - pygments=2.19.2=pyhd8ed1ab_0
   - pyobjc-core=11.0=py313hb6afeec_0
@@ -286,12 +296,13 @@ dependencies:
   - pypdf=6.7.2=pyhcf101f3_0
   - pysbd=0.3.4=pyhd8ed1ab_1
   - pysocks=1.7.1=pyha55dd90_7
-  - python=3.13.11=hc7d8306_100_cp313
+  - python=3.13.12=ha8cd034_100_cp313
   - python-dateutil=2.9.0.post0=pyhe01879c_2
   - python-dotenv=1.2.1=pyhcf101f3_0
   - python-fastjsonschema=2.21.2=pyhe01879c_0
   - python-gil=3.13.12=h4df99d1_100
   - python-json-logger=2.0.7=pyhd8ed1ab_0
+  - python-multipart=0.0.29=pyhcf101f3_0
   - python-tzdata=2025.3=pyhd8ed1ab_0
   - python-xxhash=3.6.0=py313hee11f83_1
   - python_abi=3.13=8_cp313
@@ -311,6 +322,7 @@ dependencies:
   - rfc3986-validator=0.1.1=pyh9f0ad1d_0
   - rfc3987-syntax=1.1.0=pyhe01879c_1
   - rich=14.3.3=pyhcf101f3_0
+  - rich-toolkit=0.19.10=pyhcf101f3_0
   - rpds-py=0.30.0=py313h2c089d5_0
   - rsa=4.9.1=pyhd8ed1ab_0
   - safetensors=0.7.0=py313h0b74987_0
@@ -355,6 +367,10 @@ dependencies:
   - uri-template=1.3.0=pyhd8ed1ab_1
   - urllib3=2.6.3=pyhd8ed1ab_0
   - uuid-utils=0.14.1=py310h3a138ce_0
+  - uvicorn=0.48.0=pyhc90fa1f_0
+  - uvicorn-standard=0.48.0=he364bde_0
+  - uvloop=0.22.1=py313h6535dbc_1
+  - watchfiles=1.2.0=py313h7d00576_0
   - wcwidth=0.6.0=pyhd8ed1ab_0
   - webcolors=25.10.0=pyhd8ed1ab_0
   - webencodings=0.5.1=pyhd8ed1ab_3
@@ -376,6 +392,11 @@ dependencies:
   - zstandard=0.25.0=py313h9734d34_1
   - zstd=1.5.7=hbf9d68e_6
   - pip:
+      - anthropic==0.104.1
+      - fastapi==0.136.3
+      - langchain-anthropic==1.4.3
+      - langchain-core==1.4.0
+      - langchain-protocol==0.0.15
       - pymupdf==1.27.1
-      - langchain-anthropic
+      - starlette==1.1.0
 prefix: /opt/miniconda3/envs/RAG_Langchain

@@ -70,6 +70,15 @@ class personAgent:
         """Retrieves factual chunks from Neo4j."""
         query = state["messages"][-1].content
         docs = self.knowlege_retrieval.invoke(query)
+
+         # DEBUG - print retrieved docs
+        print(f"\n=== RAG RETRIEVED {len(docs)} DOCS ===")
+        for i, doc in enumerate(docs):
+            print(f"\n--- Doc {i+1} ---")
+            print(f"Source: {doc.metadata.get('source', 'Unknown')}")
+            print(f"Score: {doc.metadata.get('rrf_score', 0.0)}")
+            print(f"Content: {doc.page_content[:200]}...")  # first 200 chars
+        print("=" * 50)
         
         knowledge_chunks = []
         for doc in docs:

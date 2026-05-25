@@ -1,0 +1,14 @@
+html, body { min-height: 100%; }
+#root { min-height: 100%; }
+body { background: #f7f5f0; color: #1c1916; }
+.sy { overflow-y: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #d4cdc4 transparent; }
+.sy::-webkit-scrollbar { width: 4px; }
+.sy::-webkit-scrollbar-thumb { background: #d4cdc4; border-radius: 2px; }
+.sx { overflow-x: auto; scrollbar-width: none; }
+.sx::-webkit-scrollbar { display: none; }
+@keyframes fadein  { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce  { 0%,80%,100% { transform: translateY(0); } 40% { transform: translateY(-5px); } }
+@keyframes slidein { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes sheetup { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+input::placeholder { opacity: 0.38; }
+button:focus-visible { outline: 2px solid #e63c2f; outline-offset: 2px; }

@@ -1,0 +1,5 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+textarea { scrollbar-width: none; }
+textarea::-webkit-scrollbar { display: none; }
