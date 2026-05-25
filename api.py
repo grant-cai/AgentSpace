@@ -5,14 +5,15 @@ from typing import Optional
 import uvicorn
 import sys
 import os
+import tempfile
+import base64
+from pathlib import Path
 
-# Import from the renamed Agent folder and the new KnowledgeRetriever folder
 from Agent.Agent import personAgent
 from KnowledgeRetriever.Ingestor import KnowledgeIngestor
 
 app = FastAPI()
 
-# Allow the frontend to connect from any origin
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,19 +21,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global agent variable (starts as None)
 agent = None
 
 def initialize_agent():
     global agent
     print("Attempting to initialize Agent...")
     try:
-        # Initialize the real AI-driven agent
         agent = personAgent("essay_chunk_agentspace", "chunk_index")
         print("Agent initialized successfully.")
     except Exception as e:
         print(f"Warning: Could not initialize AI Agent: {e}")
-        # We don't raise here to keep the API alive, but chat will fail later
         agent = None
 
 class ChatRequest(BaseModel):
@@ -49,6 +47,7 @@ class ThreadResponse(BaseModel):
 class IngestRequest(BaseModel):
     path: str
     index_name: Optional[str] = "essay_chunk_agentspace"
+    file_data: Optional[str] = None  # base64-encoded file from frontend
 
 @app.get("/health")
 def health():
@@ -57,14 +56,14 @@ def health():
 @app.post("/thread", response_model=ThreadResponse)
 def create_thread():
     if not agent:
-         raise HTTPException(status_code=503, detail="AI Agent not ready. Try ingesting data first.")
+        raise HTTPException(status_code=503, detail="AI Agent not ready. Try ingesting data first.")
     thread_id = agent.new_thread_id()
     return {"thread_id": thread_id}
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     if not agent:
-         raise HTTPException(status_code=533, detail="AI Agent not ready. Try ingesting data first.")
+        raise HTTPException(status_code=503, detail="AI Agent not ready. Try ingesting data first.")
     try:
         response = agent.chat(req.message, req.thread_id)
         return {"response": response, "thread_id": req.thread_id}
@@ -73,25 +72,34 @@ def chat(req: ChatRequest):
 
 @app.post("/ingest")
 def ingest_knowledge(req: IngestRequest):
+    tmp_path = None
     try:
-        print(f"Starting ingestion for: {req.path}")
+        if req.file_data:
+            suffix = Path(req.path).suffix or ".pdf"
+            with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+                tmp.write(base64.b64decode(req.file_data))
+                tmp_path = tmp.name
+            full_path = tmp_path
+        else:
+            full_path = req.path
+
+        print(f"Starting ingestion for: {req.path} → {full_path}")
         ingestor = KnowledgeIngestor(index_name=req.index_name)
-        ingestor.ingest(req.path)
-        print("Ingestion complete. Initializing Agent...")
-        
-        # As soon as ingestion is done, create the agent
-        initialize_agent()
-        
+        ingestor.ingest(full_path)
+
         return {
-            "status": "success", 
+            "status": "success",
             "message": f"Ingested {req.path}",
             "agent_ready": agent is not None
         }
     except Exception as e:
         print(f"Ingestion Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if tmp_path and os.path.exists(tmp_path):
+            os.unlink(tmp_path)
 
 if __name__ == "__main__":
-    # Start the server WITHOUT the agent initially
-    print("Starting API server (Agent will be initialized after ingestion)...")
+    print("Starting API server and initializing agent...")
+    initialize_agent()
     uvicorn.run(app, host="0.0.0.0", port=8000)
