@@ -1,0 +1,82 @@
+[
+  {
+    "question": "What are the four essential parts of a body paragraph as described in the text?",
+    "ground_truth": "The four essential parts of a body paragraph are the Topic Sentence, Evidence, Analysis, and Transitions."
+  },
+  {
+    "question": "What is the primary function of a topic sentence in a body paragraph?",
+    "ground_truth": "A topic sentence relates the specific topic of the paragraph to the overall thesis and signals to the reader that a new part of the argument is beginning."
+  },
+  {
+    "question": "According to the text, what constitutes 'evidence' in a body paragraph, and how should it be presented?",
+    "ground_truth": "Evidence is any detail, fact, quote, or example that illustrates a claim. It should be appropriate for the paper type, represented honestly, and introduced with enough context."
+  },
+  {
+    "question": "Why is analysis considered necessary even if a writer believes their evidence is obvious?",
+    "ground_truth": "Analysis is necessary because the reader cannot immediately see why each piece of evidence is important to the argument. It shows how the examples prove the thesis, as a list of facts alone won't make a convincing argument."
+  },
+  {
+    "question": "How do transitions function within and between body paragraphs?",
+    "ground_truth": "Transitions show how ideas within a body paragraph and different body paragraphs relate to each other. Integrating transitional devices helps the reader understand the organization of the argument."
+  },
+  {
+    "question": "Are all body paragraphs required to contain all four parts (Topic Sentence, Evidence, Analysis, Transitions)?",
+    "ground_truth": "Not all body paragraphs are created equal; some might focus primarily on explaining a detailed piece of evidence, and the next might focus on analysis of that evidence. However, all paragraphs should have a topic sentence and a transition sentence."
+  },
+  {
+    "question": "What are some suggested strategies for ordering body paragraphs in a paper?",
+    "ground_truth": "Suggestions for ordering body paragraphs include outlining different options before writing, using an order of importance (putting the strongest argument first), chronological order (good for personal narratives and timelines), clumping related body paragraphs, and using a reverse outline to check the argument's development."
+  },
+  {
+    "question": "For what types of papers is chronological order particularly suitable when organizing body paragraphs?",
+    "ground_truth": "Chronological order is good for personal narratives and papers focused on timelines."
+  },
+  {
+    "question": "How does the type of paper influence the kind of evidence required? Provide an example from the text.",
+    "ground_truth": "Different types of papers require different evidence. For example, a scientific research paper will require facts, whereas a personal narrative will probably use details about an event."
+  },
+  {
+    "question": "What is the overarching purpose of body paragraphs in relation to a paper's thesis?",
+    "ground_truth": "Body paragraphs support the thesis and organize the material of the paper."
+  },
+  {
+    "question": "In the provided example about living with roommates, what is the main sub-point being argued in the body paragraph?",
+    "ground_truth": "The main sub-point being argued in the example body paragraph is 'Learning to communicate with different people'."
+  },
+  {
+    "question": "Based on the example, how does learning to communicate with diverse people, facilitated by living with roommates, contribute to a student's independence?",
+    "ground_truth": "Learning to communicate with people from different backgrounds, as facilitated by living with roommates, improves problem-solving and conflict management skills, which makes it easier in the long run to be independent."
+  },
+  {
+    "question": "What would be the consequence of presenting only a list of facts as evidence without accompanying analysis in a body paragraph?",
+    "ground_truth": "If a body paragraph contained only a list of facts without analysis, it would not make a convincing argument because the reader wouldn't understand why each piece of evidence is important to the thesis."
+  },
+  {
+    "question": "When considering the order of body paragraphs, what does the text suggest doing before starting to write?",
+    "ground_truth": "The text suggests outlining different options before starting to write to consider how body paragraphs should be ordered."
+  },
+  {
+    "question": "How can a writer check how different orders of body paragraphs affect the development of their argument?",
+    "ground_truth": "A writer can check how different orders affect the development of their argument by copying and pasting paragraphs in a separated document or making a reverse outline to work with."
+  },
+  {
+    "question": "What is the significance of 'clumping body paragraphs that are related to each other'?",
+    "ground_truth": "Clumping body paragraphs that are related to each other makes transitions easier, helping the reader understand the organization and flow of the argument."
+  },
+  {
+    "question": "What two specific skills, besides communication, are mentioned in the example as being improved by living with someone from a different background, leading to greater independence?",
+    "ground_truth": "The example mentions that living with someone from a different background improves problem-solving and conflict management skills."
+  },
+  {
+    "question": "How does a topic sentence help the reader understand the argument's progression?",
+    "ground_truth": "A topic sentence signals to the reader that a new part of the argument is beginning, guiding them through the logical organization of the paper."
+  },
+  {
+    "question": "What is the advice given regarding the honesty and context of evidence?",
+    "ground_truth": "The advice given is to represent evidence honestly and introduce it with enough context."
+  },
+  {
+    "question": "What does the text state about the logical organization of content within a body paragraph and the order of paragraphs?",
+    "ground_truth": "It's important to logically organize the content of a body paragraph and the order of the paragraphs because body paragraphs support the thesis and organize the material."
+  }
+]
