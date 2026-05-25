@@ -377,4 +377,5 @@ dependencies:
   - zstd=1.5.7=hbf9d68e_6
   - pip:
       - pymupdf==1.27.1
+      - langchain-anthropic
 prefix: /opt/miniconda3/envs/RAG_Langchain
