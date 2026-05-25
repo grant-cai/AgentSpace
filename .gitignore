@@ -3,3 +3,9 @@ api_key.txt
 neo4j_api_key.txt
 similarities.py
 GEMINI.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/

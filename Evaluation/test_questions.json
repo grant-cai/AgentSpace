@@ -1,230 +1,82 @@
 [
   {
-    "id": "Q1",
-    "query": "What is the primary purpose of a 'Personal Statement' as suggested by its title?",
-    "complexity": "local",
-    "target_entities": [
-      "Personal Statements"
-    ],
-    "reasoning_path": "Directly infer purpose from the document title 'Personal Statements'.",
-    "reference": "A 'Personal Statement' is a document typically used to describe an individual's personal qualities, experiences, and motivations, often for academic admissions or job applications."
+    "question": "What are the four essential parts of a body paragraph as described in the text?",
+    "ground_truth": "The four essential parts of a body paragraph are the Topic Sentence, Evidence, Analysis, and Transitions."
   },
   {
-    "id": "Q2",
-    "query": "What are 'Abstracts and Summaries' generally used for in academic contexts?",
-    "complexity": "local",
-    "target_entities": [
-      "Abstracts and Summaries"
-    ],
-    "reasoning_path": "Directly infer the use from the document title 'Abstracts and Summaries'.",
-    "reference": "'Abstracts and Summaries' are concise overviews of longer works, providing readers with a quick understanding of the main points, arguments, or findings without needing to read the entire text."
+    "question": "What is the primary function of a topic sentence in a body paragraph?",
+    "ground_truth": "A topic sentence relates the specific topic of the paragraph to the overall thesis and signals to the reader that a new part of the argument is beginning."
   },
   {
-    "id": "Q3",
-    "query": "Which document focuses on evaluating a published work?",
-    "complexity": "local",
-    "target_entities": [
-      "Book Reviews"
-    ],
-    "reasoning_path": "Identify the document title that directly implies evaluation of a published work.",
-    "reference": "'Book Reviews' would focus on evaluating a published work, offering critical analysis and opinion on its content, style, and significance."
+    "question": "According to the text, what constitutes 'evidence' in a body paragraph, and how should it be presented?",
+    "ground_truth": "Evidence is any detail, fact, quote, or example that illustrates a claim. It should be appropriate for the paper type, represented honestly, and introduced with enough context."
   },
   {
-    "id": "Q4",
-    "query": "What kind of essay requires examining similarities and differences between two or more subjects?",
-    "complexity": "local",
-    "target_entities": [
-      "Compare and Contrast Essays"
-    ],
-    "reasoning_path": "Directly identify the essay type from the document title 'Compare and Contrast Essays'.",
-    "reference": "'Compare and Contrast Essays' require the writer to examine the similarities and differences between two or more subjects."
+    "question": "Why is analysis considered necessary even if a writer believes their evidence is obvious?",
+    "ground_truth": "Analysis is necessary because the reader cannot immediately see why each piece of evidence is important to the argument. It shows how the examples prove the thesis, as a list of facts alone won't make a convincing argument."
   },
   {
-    "id": "Q5",
-    "query": "How might 'Assignment Analysis' be beneficial before writing a 'Research Report'?",
-    "complexity": "relationship",
-    "target_entities": [
-      "Assignment Analysis",
-      "Research Reports"
-    ],
-    "reasoning_path": "Connect 'Assignment Analysis' (understanding requirements) to 'Research Reports' (a specific type of report).",
-    "reference": "'Assignment Analysis' would be beneficial before writing a 'Research Report' by helping the writer thoroughly understand the requirements, scope, and expectations of the research assignment, leading to a more focused and successful report."
+    "question": "How do transitions function within and between body paragraphs?",
+    "ground_truth": "Transitions show how ideas within a body paragraph and different body paragraphs relate to each other. Integrating transitional devices helps the reader understand the organization of the argument."
   },
   {
-    "id": "Q6",
-    "query": "What is the key distinction between 'Personal Narratives' and 'Personal Statements'?",
-    "complexity": "relationship",
-    "target_entities": [
-      "Personal Narratives",
-      "Personal Statements"
-    ],
-    "reasoning_path": "Differentiate the implied focus of 'Personal Narratives' (storytelling) from 'Personal Statements' (purpose/application).",
-    "reference": "While both are personal, 'Personal Narratives' typically focus on recounting a specific story or experience, often with a creative or reflective aim. 'Personal Statements,' on the other hand, are usually persuasive essays written for applications, focusing on one's qualifications, goals, and reasons for applying."
+    "question": "Are all body paragraphs required to contain all four parts (Topic Sentence, Evidence, Analysis, Transitions)?",
+    "ground_truth": "Not all body paragraphs are created equal; some might focus primarily on explaining a detailed piece of evidence, and the next might focus on analysis of that evidence. However, all paragraphs should have a topic sentence and a transition sentence."
   },
   {
-    "id": "Q7",
-    "query": "If a student is preparing a 'Phil Paper', which other document would likely offer relevant procedural advice?",
-    "complexity": "relationship",
-    "target_entities": [
-      "Phil Paper Procedure & Tips",
-      "Assignment Analysis"
-    ],
-    "reasoning_path": "Connect 'Phil Paper Procedure & Tips' with general assignment understanding.",
-    "reference": "The 'Phil Paper Procedure & Tips' document would directly offer relevant procedural advice for a philosophy paper. Additionally, 'Assignment Analysis' could provide general strategies for understanding assignment expectations, which would be applicable to any paper, including a 'Phil Paper'."
+    "question": "What are some suggested strategies for ordering body paragraphs in a paper?",
+    "ground_truth": "Suggestions for ordering body paragraphs include outlining different options before writing, using an order of importance (putting the strongest argument first), chronological order (good for personal narratives and timelines), clumping related body paragraphs, and using a reverse outline to check the argument's development."
   },
   {
-    "id": "Q8",
-    "query": "What types of reports are specifically mentioned in the provided document titles?",
-    "complexity": "local",
-    "target_entities": [
-      "Lab Reports",
-      "Research Reports"
-    ],
-    "reasoning_path": "Scan document titles for the word 'Reports'.",
-    "reference": "The document titles specifically mention 'Lab Reports' and 'Research Reports'."
+    "question": "For what types of papers is chronological order particularly suitable when organizing body paragraphs?",
+    "ground_truth": "Chronological order is good for personal narratives and papers focused on timelines."
   },
   {
-    "id": "Q9",
-    "query": "How might the advice from 'Abstracts and Summaries' be applied when writing a 'Book Review'?",
-    "complexity": "multi-hop",
-    "target_entities": [
-      "Abstracts and Summaries",
-      "Book Reviews"
-    ],
-    "reasoning_path": "Connect the purpose of abstracts/summaries (condensing information) to the need for a concise overview in a book review.",
-    "reference": "The advice from 'Abstracts and Summaries' could be applied to a 'Book Review' by helping the writer effectively condense the main arguments or plot of the book being reviewed into a brief, informative overview for the reader, often found in the introduction of a review."
+    "question": "How does the type of paper influence the kind of evidence required? Provide an example from the text.",
+    "ground_truth": "Different types of papers require different evidence. For example, a scientific research paper will require facts, whereas a personal narrative will probably use details about an event."
   },
   {
-    "id": "Q10",
-    "query": "A student needs to analyze two different scientific experiments. Which document types would be most directly relevant to their task?",
-    "complexity": "multi-hop",
-    "target_entities": [
-      "Lab Reports",
-      "Compare and Contrast Essays",
-      "Assignment Analysis"
-    ],
-    "reasoning_path": "Combine 'Lab Reports' (scientific experiments) with 'Compare and Contrast Essays' (analyzing differences) and 'Assignment Analysis' (understanding the task).",
-    "reference": "For analyzing two different scientific experiments, 'Lab Reports' would be directly relevant for understanding the structure and content of such reports. Additionally, 'Compare and Contrast Essays' would be highly useful for structuring the analysis of similarities and differences between the two experiments. 'Assignment Analysis' would also be crucial for understanding the specific requirements of the analysis task."
+    "question": "What is the overarching purpose of body paragraphs in relation to a paper's thesis?",
+    "ground_truth": "Body paragraphs support the thesis and organize the material of the paper."
   },
   {
-    "id": "Q11",
-    "query": "What are the common themes or purposes across all the 'essay' related documents?",
-    "complexity": "global",
-    "target_entities": [
-      "Compare and Contrast Essays",
-      "Personal Narratives",
-      "Personal Statements",
-      "Phil Paper Procedure & Tips"
-    ],
-    "reasoning_path": "Aggregate themes from all documents explicitly or implicitly related to 'essays'.",
-    "reference": "The 'essay' related documents ('Compare and Contrast Essays', 'Personal Narratives', 'Personal Statements', 'Phil Paper Procedure & Tips') generally aim to guide students in developing structured arguments, expressing personal experiences or motivations, and adhering to specific academic conventions for different essay types."
+    "question": "In the provided example about living with roommates, what is the main sub-point being argued in the body paragraph?",
+    "ground_truth": "The main sub-point being argued in the example body paragraph is 'Learning to communicate with different people'."
   },
   {
-    "id": "Q12",
-    "query": "Which document type would be least likely to involve subjective opinion or personal experience?",
-    "complexity": "comparative",
-    "target_entities": [
-      "Lab Reports",
-      "Personal Narratives",
-      "Personal Statements",
-      "Book Reviews"
-    ],
-    "reasoning_path": "Compare the nature of different document types to identify the most objective one.",
-    "reference": "'Lab Reports' would be least likely to involve subjective opinion or personal experience, as they typically focus on objective reporting of experimental procedures, results, and analysis."
+    "question": "Based on the example, how does learning to communicate with diverse people, facilitated by living with roommates, contribute to a student's independence?",
+    "ground_truth": "Learning to communicate with people from different backgrounds, as facilitated by living with roommates, improves problem-solving and conflict management skills, which makes it easier in the long run to be independent."
   },
   {
-    "id": "Q13",
-    "query": "If a student is struggling to understand the requirements of a new writing assignment, which document should they consult first?",
-    "complexity": "local",
-    "target_entities": [
-      "Assignment Analysis"
-    ],
-    "reasoning_path": "Directly identify the document related to understanding assignment requirements.",
-    "reference": "They should consult 'Assignment Analysis' first, as it is designed to help understand the requirements of a writing assignment."
+    "question": "What would be the consequence of presenting only a list of facts as evidence without accompanying analysis in a body paragraph?",
+    "ground_truth": "If a body paragraph contained only a list of facts without analysis, it would not make a convincing argument because the reader wouldn't understand why each piece of evidence is important to the thesis."
   },
   {
-    "id": "Q14",
-    "query": "What is the primary difference in focus between 'Research Reports' and 'Lab Reports'?",
-    "complexity": "relationship",
-    "target_entities": [
-      "Research Reports",
-      "Lab Reports"
-    ],
-    "reasoning_path": "Infer the typical distinctions between these two types of reports.",
-    "reference": "While both are scientific, 'Lab Reports' typically detail specific experiments conducted by the student, focusing on methodology, results, and discussion of a single lab activity. 'Research Reports' usually cover broader investigations, synthesizing existing literature, presenting original research findings (which might include multiple experiments or data sources), and offering more extensive analysis and conclusions."
+    "question": "When considering the order of body paragraphs, what does the text suggest doing before starting to write?",
+    "ground_truth": "The text suggests outlining different options before starting to write to consider how body paragraphs should be ordered."
   },
   {
-    "id": "Q15",
-    "query": "Could a 'Personal Narrative' be part of a 'Personal Statement'? Explain why or why not based on the titles.",
-    "complexity": "multi-hop",
-    "target_entities": [
-      "Personal Narratives",
-      "Personal Statements"
-    ],
-    "reasoning_path": "Analyze the potential overlap and distinct purposes implied by the titles.",
-    "reference": "Yes, a 'Personal Narrative' could be a component of a 'Personal Statement'. A 'Personal Statement' aims to convey one's qualifications and motivations for an application, and including a concise, relevant 'Personal Narrative' (a story or experience) can effectively illustrate key qualities or experiences that support the overall purpose of the statement."
+    "question": "How can a writer check how different orders of body paragraphs affect the development of their argument?",
+    "ground_truth": "A writer can check how different orders affect the development of their argument by copying and pasting paragraphs in a separated document or making a reverse outline to work with."
   },
   {
-    "id": "Q16",
-    "query": "What general category of academic writing do 'Abstracts and Summaries' and 'Book Reviews' fall under?",
-    "complexity": "global",
-    "target_entities": [
-      "Abstracts and Summaries",
-      "Book Reviews"
-    ],
-    "reasoning_path": "Identify the common function of these document types.",
-    "reference": "Both 'Abstracts and Summaries' and 'Book Reviews' fall under the general category of analytical or interpretive writing, as they involve analyzing and presenting information about existing works."
+    "question": "What is the significance of 'clumping body paragraphs that are related to each other'?",
+    "ground_truth": "Clumping body paragraphs that are related to each other makes transitions easier, helping the reader understand the organization and flow of the argument."
   },
   {
-    "id": "Q17",
-    "query": "Which document provides specific guidance for a philosophical writing task?",
-    "complexity": "local",
-    "target_entities": [
-      "Phil Paper Procedure & Tips"
-    ],
-    "reasoning_path": "Directly identify the document title that specifies philosophical writing.",
-    "reference": "'Phil Paper Procedure & Tips' provides specific guidance for a philosophical writing task."
+    "question": "What two specific skills, besides communication, are mentioned in the example as being improved by living with someone from a different background, leading to greater independence?",
+    "ground_truth": "The example mentions that living with someone from a different background improves problem-solving and conflict management skills."
   },
   {
-    "id": "Q18",
-    "query": "Imagine a student is writing a 'Compare and Contrast Essay' about two different research studies. Which other documents would be most relevant for them?",
-    "complexity": "multi-hop",
-    "target_entities": [
-      "Compare and Contrast Essays",
-      "Research Reports",
-      "Abstracts and Summaries",
-      "Assignment Analysis"
-    ],
-    "reasoning_path": "Connect the essay type to the subject matter (research studies) and general writing guidance.",
-    "reference": "For a 'Compare and Contrast Essay' about two research studies, the student would find 'Research Reports' helpful to understand the structure and content of such studies. 'Abstracts and Summaries' would be useful for extracting the core arguments of each study efficiently. And, of course, 'Assignment Analysis' would help ensure they meet the specific requirements of the comparison essay."
+    "question": "How does a topic sentence help the reader understand the argument's progression?",
+    "ground_truth": "A topic sentence signals to the reader that a new part of the argument is beginning, guiding them through the logical organization of the paper."
   },
   {
-    "id": "Q19",
-    "query": "What is the common thread among 'Personal Narratives' and 'Personal Statements'?",
-    "complexity": "relationship",
-    "target_entities": [
-      "Personal Narratives",
-      "Personal Statements"
-    ],
-    "reasoning_path": "Identify the shared characteristic implied by 'Personal' in both titles.",
-    "reference": "The common thread among 'Personal Narratives' and 'Personal Statements' is their focus on the individual's experiences, perspectives, or self-reflection, as indicated by the word 'Personal' in both titles."
+    "question": "What is the advice given regarding the honesty and context of evidence?",
+    "ground_truth": "The advice given is to represent evidence honestly and introduce it with enough context."
   },
   {
-    "id": "Q20",
-    "query": "Based on the titles, what is the overall scope of writing assistance offered by this collection of documents?",
-    "complexity": "global",
-    "target_entities": [
-      "Abstracts and Summaries",
-      "Assignment Analysis",
-      "Book Reviews",
-      "Compare and Contrast Essays",
-      "Lab Reports",
-      "Personal Narratives",
-      "Personal Statements",
-      "Phil Paper Procedure & Tips",
-      "Research Reports"
-    ],
-    "reasoning_path": "Synthesize the types of documents to understand the broad range of topics covered.",
-    "reference": "The overall scope of writing assistance offered by this collection of documents is broad, covering various academic and personal writing genres. It includes guidance on analytical writing (Abstracts, Summaries, Book Reviews, Assignment Analysis), scientific reporting (Lab Reports, Research Reports), persuasive writing (Personal Statements), reflective writing (Personal Narratives), and discipline-specific writing (Phil Paper Procedure & Tips)."
+    "question": "What does the text state about the logical organization of content within a body paragraph and the order of paragraphs?",
+    "ground_truth": "It's important to logically organize the content of a body paragraph and the order of the paragraphs because body paragraphs support the thesis and organize the material."
   }
 ]

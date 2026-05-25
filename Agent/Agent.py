@@ -35,8 +35,8 @@ class personAgent:
 
         # Personality wrapper
         self.personality = PersonalityWrapper(
-            profile_path="../PersonalityRetriever/personality_summary.json",
-            faiss_dir="../PersonalityRetriever/faiss_db"
+            profile_path="PersonalityRetriever/personality_summary.json",
+            faiss_dir="PersonalityRetriever/faiss_db"
         )
 
         # Knowledge retriever
