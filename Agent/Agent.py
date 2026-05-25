@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from langgraph.checkpoint.memory import MemorySaver
 
 # Import LLM
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_anthropic import ChatAnthropic
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from PersonalityRetriever.personality_wrapper import PersonalityWrapper
@@ -28,18 +28,15 @@ class personAgent:
     def __init__(self, personIndex: str, fulltext_index: str):
         # Load environment variables
         load_dotenv(dotenv_path=".env", override=True)
-        GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+        ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
         NEO4J_URI = os.environ.get("NEO4J_URI")
         NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME")
         NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
 
-        if GOOGLE_API_KEY:
-            os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
-
         # Personality wrapper
         self.personality = PersonalityWrapper(
-            profile_path="../PersonalityRetriever/personality_summary.json",
-            faiss_dir="../PersonalityRetriever/faiss_db"
+            profile_path="PersonalityRetriever/personality_summary.json",
+            faiss_dir="PersonalityRetriever/faiss_db"
         )
 
         # Knowledge retriever
@@ -52,10 +49,9 @@ class personAgent:
         )
         
         # LLM for synthesis
-        self.llm = ChatGoogleGenerativeAI(
-            model="gemini-3.1-flash-lite-preview",
+        self.llm = ChatAnthropic(
+            model="claude-sonnet-4-6",
             temperature=0.7,
-            convert_system_message_to_human=True,
         )
 
         # Build and compile the graph
