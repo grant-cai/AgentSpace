@@ -15,7 +15,7 @@ conda create -n <environment_name> python=3.13
 conda activate <environment_name>
 ```
 
-4. Download dependencies by running the following command in the same directory as `environment.yml`:
+4. Download dependencies by running the following command in the same directory as `environment.yml`. If on apple use `environment.yml` on windows use `environment_windows.yml`:
 ```
 conda env update -f environment.yml
 ```
@@ -45,15 +45,19 @@ conda env update -f environment.yml
 ## Current Repository Setup
 
 ```
-├── Orchestrator/               # AgentSpace Agent
-│   ├── Agent.py                # Defines the Agent, uses Knowledge and Personality Retrievers
-│   └── TestAgent.ipynb         # Test an Agent
-├── KnowledgeRetriever/         # Graph/retrievers for knowledge
-│   ├── Retriever.py            # Holds the graph retriever
-│   ├── Neo4jAdapter.py         # Wraps Retriever.py for use with Neo4j
-│   └── Neo4jGraph.ipynb        # Jupyter notebook to set up Neo4j graph
-├── PersonalityRetriever/       # Database/retrievers for personality
-│   └── ...                     # (grant insert here)
-└── README.md                   # Project documentation
+├── Orchestrator/                 # AgentSpace Agent
+│   ├── Agent.py                  # Defines the Agent, uses Knowledge and Personality Retrievers
+│   └── TestAgent.ipynb           # Test an Agent
+├── KnowledgeRetriever/           # Graph/retrievers for knowledge
+│   ├── Retriever.py              # Holds the graph retriever
+│   ├── Neo4jAdapter.py           # Wraps Retriever.py for use with Neo4j
+│   └── Neo4jGraph.ipynb          # Jupyter notebook to set up Neo4j graph
+├── PersonalityRetriever/         # Database/retrievers for personality
+│   ├── faiss_db                  # faiss vector store
+|   ├── create_profile.py         # Uses LLM API call to generate personality.json
+|   ├── grant_tutor_rag           # Current personality pipeline. Creates faiss db
+|   ├── personality_summary.json  # JSON profile. Serves as a general lookup of personality traits and characteristics.
+|   └── personality_wrapper.py    # Wraps retrieval and loading of personality JSON
+└── README.md                     # Project documentation
 ```
 
