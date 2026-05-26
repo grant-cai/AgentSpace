@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { AGENTS } from '../data/agents'
 import AgentIcon from '../components/AgentIcon'
@@ -9,19 +9,44 @@ const ACTIVE_AGENTS = AGENTS.filter(a => !a.comingSoon)
 
 const API_BASE = 'http://localhost:8000'
 
-function readFileAsBase64(file) {
+function readFileAsBase64(file, onProgress) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.onload = () => resolve(reader.result.split(',')[1])
+    reader.onprogress = e => {
+      if (e.lengthComputable) onProgress?.(Math.round((e.loaded / e.total) * 35))
+    }
     reader.onerror = reject
     reader.readAsDataURL(file)
+  })
+}
+
+function postIngest(payload, onProgress) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('POST', `${API_BASE}/ingest`)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.upload.onprogress = e => {
+      if (e.lengthComputable) onProgress?.(35 + Math.round((e.loaded / e.total) * 60))
+    }
+    xhr.onload = () => {
+      let result
+      try { result = JSON.parse(xhr.responseText || '{}') } catch { result = {} }
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(result)
+      } else {
+        reject(new Error(result.detail || xhr.statusText || 'Ingest failed'))
+      }
+    }
+    xhr.onerror = () => reject(new Error('Upload failed'))
+    xhr.send(JSON.stringify(payload))
   })
 }
 
 const load = (key, fallback) => {
   try { const s = localStorage.getItem(key); return s ? JSON.parse(s) : fallback } catch { return fallback }
 }
-const save = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)) } catch {} }
+const save = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)) } catch { return } }
 
 function formatSize(bytes) {
   if (bytes < 1024) return `${bytes} B`
@@ -39,19 +64,12 @@ export default function Admin() {
   const [docs, setDocs] = useState(() => load('as_docs', {}))
   const [dragging, setDragging] = useState(false)
   const [toast, setToast] = useState(null)
+  const [uploadItems, setUploadItems] = useState([])
 
   
   const fileRef = useRef(null)
 
   const [uploading, setUploading] = useState(false)
-  const [agentReady, setAgentReady] = useState(false)
-
-  useEffect(() => {
-    fetch(`${API_BASE}/health`)
-      .then(r => r.json())
-      .then(d => setAgentReady(d.agent_ready ?? false))
-      .catch(() => setAgentReady(false))
-  }, [])
 
   const selectedAgent = ACTIVE_AGENTS.find(a => a.id === selectedId)
   const agentDocs = docs[selectedId] || []
@@ -68,24 +86,29 @@ export default function Admin() {
   if (pdfs.length === 0) { showToast('Only PDF files are accepted', 'error'); return }
 
   setUploading(true)
+  const batch = pdfs.map(file => ({ id: `${Date.now()}-${file.name}-${Math.random()}`, name: file.name, progress: 0, status: 'Preparing' }))
+  setUploadItems(batch)
   const succeeded = []
 
-  for (const file of pdfs) {
+  const updateUpload = (id, patch) => {
+    setUploadItems(items => items.map(item => item.id === id ? { ...item, ...patch } : item))
+  }
+
+  for (const [index, file] of pdfs.entries()) {
+    const itemId = batch[index].id
     try {
-      const base64Data = await readFileAsBase64(file)
-      const res = await fetch(`${API_BASE}/ingest`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path: file.name, index_name: 'essay_chunk_agentspace', file_data: base64Data }),
+      updateUpload(itemId, { status: 'Reading file', progress: 5 })
+      const base64Data = await readFileAsBase64(file, progress => {
+        updateUpload(itemId, { progress: Math.max(5, progress) })
       })
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: res.statusText }))
-        throw new Error(err.detail || 'Ingest failed')
-      }
-      const result = await res.json()
-      if (result.agent_ready) setAgentReady(true)
+      updateUpload(itemId, { status: 'Uploading', progress: 40 })
+      await postIngest({ path: file.name, index_name: 'essay_chunk_agentspace', file_data: base64Data }, progress => {
+        updateUpload(itemId, { progress: Math.min(95, progress) })
+      })
+      updateUpload(itemId, { status: 'Complete', progress: 100 })
       succeeded.push(file)
     } catch (err) {
+      updateUpload(itemId, { status: 'Failed', progress: 100, error: true })
       showToast(`${file.name}: ${err.message}`, 'error')
     }
   }
@@ -101,6 +124,7 @@ export default function Admin() {
   }
 
   setUploading(false)
+  setTimeout(() => setUploadItems([]), 1400)
 }, [selectedId])
 
   const deleteDoc = (docId) => {
@@ -184,11 +208,27 @@ export default function Admin() {
               </svg>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: 15, fontWeight: 600, color: C.ink }}>{dragging ? 'Drop to upload' : 'Drag & drop PDFs here'}</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: C.ink }}>{uploading ? 'Uploading PDFs' : dragging ? 'Drop to upload' : 'Drag & drop PDFs here'}</div>
               <div style={{ fontSize: 13, color: C.faint, marginTop: 4 }}>or click to browse — PDF files only</div>
             </div>
           </div>
           <input ref={fileRef} type="file" accept=".pdf,application/pdf" multiple style={{ display: 'none' }} onChange={e => { addDocs(e.target.files); e.target.value = '' }}/>
+
+          {uploadItems.length > 0 && (
+            <div style={{ background: C.card, border: `1px solid ${C.line}`, borderRadius: 14, padding: '14px 16px', marginTop: -18, marginBottom: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {uploadItems.map(item => (
+                <div key={item.id}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginBottom: 8 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: C.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.name}</div>
+                    <div style={{ fontSize: 12, color: item.error ? C.accent : C.faint, flexShrink: 0 }}>{item.status} · {item.progress}%</div>
+                  </div>
+                  <div style={{ height: 8, borderRadius: 999, background: C.subtle, overflow: 'hidden' }}>
+                    <div style={{ width: `${item.progress}%`, height: '100%', borderRadius: 999, background: item.error ? C.accent : selectedAgent?.c1 || C.accent, transition: 'width 0.2s ease' }}/>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Document log */}
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.2, color: C.faint, textTransform: 'uppercase', marginBottom: 14 }}>
