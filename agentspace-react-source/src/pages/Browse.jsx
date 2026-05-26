@@ -146,6 +146,7 @@ export default function Browse() {
   const [sidebarWidth, setSidebarWidth] = useState(260)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [chatDark, setChatDark] = useState(false)
+  const [confirmUnsubscribe, setConfirmUnsubscribe] = useState(false)
   const CC = chatDark ? CHAT_DARK : C
   const dragRef = useRef(null)
 
@@ -169,6 +170,7 @@ export default function Browse() {
   const unsubscribeFromChat = () => {
     if (!chatAgent) return
     unsubscribe(chatAgent.id)
+    setConfirmUnsubscribe(false)
     closeChat()
     setTab('myagents')
   }
@@ -185,6 +187,7 @@ export default function Browse() {
   const openChat = agent => {
     setDetailAgent(null)
     setChatAgent(agent)
+    setConfirmUnsubscribe(false)
     const agentSessions = sessions.filter(s => s.agentId === agent.id)
     if (agentSessions.length === 0) {
       setActiveSessionId(createSession(agent))
@@ -193,7 +196,7 @@ export default function Browse() {
     }
   }
 
-  const closeChat = () => { setChatAgent(null); setActiveSessionId(null) }
+  const closeChat = () => { setChatAgent(null); setActiveSessionId(null); setConfirmUnsubscribe(false) }
 
   const newChat = () => setActiveSessionId(createSession(chatAgent))
 
@@ -303,12 +306,28 @@ export default function Browse() {
                 </div>
                 {owned.includes(chatAgent.id) && (
                   <div style={{ padding: '12px 14px 16px' }}>
-                    <button onClick={unsubscribeFromChat}
-                      style={{ width: '100%', padding: '10px 12px', borderRadius: 10, border: `1.5px solid ${CC.line}`, background: 'transparent', color: CC.faint, cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600, fontSize: 13, transition: 'background 0.15s,color 0.15s' }}
-                      onMouseEnter={e => { e.currentTarget.style.background = CC.subtle; e.currentTarget.style.color = CC.accent }}
-                      onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = CC.faint }}>
-                      Unsubscribe from {chatAgent.name}
-                    </button>
+                    {confirmUnsubscribe ? (
+                      <div style={{ border: `1.5px solid ${CC.line}`, borderRadius: 10, padding: 10, background: CC.subtle }}>
+                        <div style={{ color: CC.ink, fontSize: 13, fontWeight: 600, marginBottom: 8 }}>Confirm unsubscribe?</div>
+                        <div style={{ display: 'flex', gap: 8 }}>
+                          <button onClick={() => setConfirmUnsubscribe(false)}
+                            style={{ flex: 1, padding: '8px 10px', borderRadius: 8, border: `1.5px solid ${CC.line}`, background: 'transparent', color: CC.muted, cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600, fontSize: 12 }}>
+                            Cancel
+                          </button>
+                          <button onClick={unsubscribeFromChat}
+                            style={{ flex: 1, padding: '8px 10px', borderRadius: 8, border: 'none', background: CC.accent, color: '#fff', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: 12 }}>
+                            Confirm
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <button onClick={() => setConfirmUnsubscribe(true)}
+                        style={{ width: '100%', padding: '10px 12px', borderRadius: 10, border: `1.5px solid ${CC.line}`, background: 'transparent', color: CC.faint, cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600, fontSize: 13, transition: 'background 0.15s,color 0.15s' }}
+                        onMouseEnter={e => { e.currentTarget.style.background = CC.subtle; e.currentTarget.style.color = CC.accent }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = CC.faint }}>
+                        Unsubscribe from {chatAgent.name}
+                      </button>
+                    )}
                   </div>
                 )}
                 <div onMouseDown={onDragStart} ref={dragRef}
