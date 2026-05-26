@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { REPLIES } from '../data/agents'
 import AgentIcon from './AgentIcon'
 import { useC } from '../context/ThemeContext'
+import ReactMarkdown from 'react-markdown'
 
 function greeting() {
   const h = new Date().getHours()
@@ -97,7 +98,28 @@ export default function ChatScreen({ agent, history, sessionId, onAddMsg, onNeed
           </div>
           {history.map((m, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', animation: 'fadein 0.3s ease' }}>
-              <div style={{ maxWidth: '74%', padding: '11px 15px', fontSize: 14, lineHeight: 1.6, borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '4px 18px 18px 18px', background: m.role === 'user' ? C.ink : C.card, color: m.role === 'user' ? C.bg : C.mid, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', border: m.role === 'user' ? 'none' : `1px solid ${C.line}`, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{m.text}</div>
+              <div style={{ maxWidth: '74%', padding: '11px 15px', fontSize: 14, lineHeight: 1.6, borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '4px 18px 18px 18px', background: m.role === 'user' ? C.ink : C.card, color: m.role === 'user' ? C.bg : C.mid, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', border: m.role === 'user' ? 'none' : `1px solid ${C.line}`, wordBreak: 'break-word' }}>
+                {m.role === 'user' ? (
+                  <span style={{ whiteSpace: 'pre-wrap' }}>{m.text}</span>
+                ) : (
+                  <ReactMarkdown
+                    components={{
+                      p: ({ children }) => <p style={{ margin: '0 0 8px', whiteSpace: 'pre-wrap' }}>{children}</p>,
+                      ul: ({ children }) => <ul style={{ margin: '0 0 8px', paddingLeft: 20 }}>{children}</ul>,
+                      ol: ({ children }) => <ol style={{ margin: '0 0 8px', paddingLeft: 20 }}>{children}</ol>,
+                      li: ({ children }) => <li style={{ marginBottom: 2 }}>{children}</li>,
+                      code: ({ inline, children }) => inline
+                        ? <code style={{ background: 'rgba(0,0,0,0.08)', borderRadius: 4, padding: '1px 5px', fontFamily: 'monospace', fontSize: 13 }}>{children}</code>
+                        : <pre style={{ background: 'rgba(0,0,0,0.08)', borderRadius: 8, padding: '10px 14px', overflowX: 'auto', margin: '0 0 8px' }}><code style={{ fontFamily: 'monospace', fontSize: 13 }}>{children}</code></pre>,
+                      strong: ({ children }) => <strong style={{ fontWeight: 700 }}>{children}</strong>,
+                      em: ({ children }) => <em>{children}</em>,
+                      h1: ({ children }) => <h1 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 6px' }}>{children}</h1>,
+                      h2: ({ children }) => <h2 style={{ fontSize: 16, fontWeight: 700, margin: '0 0 6px' }}>{children}</h2>,
+                      h3: ({ children }) => <h3 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 6px' }}>{children}</h3>,
+                    }}
+                  >{m.text}</ReactMarkdown>
+                )}
+              </div>
             </div>
           ))}
           {typing && (
