@@ -1,5 +1,5 @@
 export const AGENTS = [
-  { id:5, name:'Grant', role:'Writing Tutor', cat:'Education', spec:'Writing & Composition', price:19, rating:4.9, reviews:5632, sessions:'45k+', c1:'#0891b2', c2:'#22d3ee', img:'/grant_icon.png',
+  { id:5, name:'Grant', role:'Writing Tutor', cat:'Education', spec:'Writing & Composition', price:19, rating:4.9, reviews:5632, sessions:'45k+', c1:'#0891b2', c2:'#22d3ee', img:'grant_icon.png',
     bio:'Grant adapts to your writing level and goals — from high school essays to university dissertations, personal statements to professional reports. Grant has helped 5,600+ students find their voice, sharpen their arguments, and write with clarity and confidence. Whatever the assignment, whatever the deadline, Grant meets you exactly where you are.',
     greet:"Hello! I'm Grant, your writing tutor. What are we working on today? Share your draft, your prompt, or just tell me where you're stuck.",
     tags:['Essays','Research Papers','Creative Writing','Grammar'],
@@ -17,11 +17,11 @@ export const REVIEWS = {
 }
 
 export const AGENTS_COMING_SOON = [
-  { id:101, name:'Aria',  role:'Therapist',        cat:'Mental Health', spec:'Anxiety & CBT',    price:29, rating:4.9, reviews:0, sessions:'—', c1:'#7c3aed', c2:'#a78bfa', img:'/aria_icon.png', comingSoon:true,
+  { id:101, name:'Aria',  role:'Therapist',        cat:'Mental Health', spec:'Anxiety & CBT',    price:29, rating:4.9, reviews:0, sessions:'—', c1:'#7c3aed', c2:'#a78bfa', img:'aria_icon.png', comingSoon:true,
     bio:'', greet:'', tags:[], canHelp:[], expect:'' },
-  { id:102, name:'Lex',   role:'Lawyer',            cat:'Legal',         spec:'Contract & IP',   price:49, rating:4.8, reviews:0, sessions:'—', c1:'#1d4ed8', c2:'#60a5fa', img:'/lex_icon.png', comingSoon:true,
+  { id:102, name:'Lex',   role:'Lawyer',            cat:'Legal',         spec:'Contract & IP',   price:49, rating:4.8, reviews:0, sessions:'—', c1:'#1d4ed8', c2:'#60a5fa', img:'lex_icon.png', comingSoon:true,
     bio:'', greet:'', tags:[], canHelp:[], expect:'' },
-  { id:103, name:'Max',   role:'Financial Advisor', cat:'Finance',       spec:'Portfolio & Tax', price:39, rating:4.7, reviews:0, sessions:'—', c1:'#059669', c2:'#34d399', img:'/max_icon.png', comingSoon:true,
+  { id:103, name:'Max',   role:'Financial Advisor', cat:'Finance',       spec:'Portfolio & Tax', price:39, rating:4.7, reviews:0, sessions:'—', c1:'#059669', c2:'#34d399', img:'max_icon.png', comingSoon:true,
     bio:'', greet:'', tags:[], canHelp:[], expect:'' },
 ]
 
