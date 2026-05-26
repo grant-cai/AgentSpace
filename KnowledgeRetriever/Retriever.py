@@ -6,6 +6,7 @@ Retriever function for knowledge
 
 
 import os
+import re
 import numpy as np
 from dataclasses import dataclass
 from typing import Optional
@@ -134,7 +135,11 @@ def _vector_search(retriever: Retriever, query_text: str, k: int, context_size: 
     return results
 
 
+def _sanitize_lucene(query: str) -> str:
+    return re.sub(r'[+\-&|!(){}\[\]^"~*?:\\/]', ' ', query).strip()
+
 def _bm25_search(retriever: Retriever, query_text: str, k: int, context_size: int):
+    query_text = _sanitize_lucene(query_text)
     cypher = """
     CALL db.index.fulltext.queryNodes($index, $query)
     YIELD node, score
